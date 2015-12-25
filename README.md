@@ -1,29 +1,17 @@
-# README #
+**ANSIBLE FOR IDK**
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This is a basic setup for deployment to a server on EC2.
+Currently it installs system dependencies, creates a virtualenv and installs python dependencies.
 
-### What is this repository for? ###
+    TODO:
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+    Setup codeship deploy to S3 and a webhook to a server.
+    
+    Retrieve artifact from S3.
 
-### How do I get set up? ###
+    Install application.
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+    Copy the local .env to server to finish the application setup.
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+    Install nginx and uwsgi. Still need to define which is the best way to setup the     configuration files for those, but for now will copy them from the repository or a file generated from a vault.
+    
