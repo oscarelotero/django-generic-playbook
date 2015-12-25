@@ -1,0 +1,9 @@
+# Application servers
+[app]
+52.89.15.237
+
+# Variables that will be applied to all servers
+[app:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=/home/cristian/.ssh/keyandresgz.pem
+
