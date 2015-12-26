@@ -1,13 +1,12 @@
-===============
-ANSIBLE FOR IDK
-===============
+**ANSIBLE FOR IDK**
 
 This is a basic setup for deployment to a server on EC2.
 Currently it installs system dependencies, creates a virtualenv and installs python dependencies.
 
-TODO:
-    Setup codeship deploy to S3 and a webhook to a server.
+    TODO:
 
+    Setup codeship deploy to S3 and a webhook to a server.
+    
     Retrieve artifact from S3.
 
     Install application.
