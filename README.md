@@ -2,6 +2,8 @@
 
 This is a basic setup for deployment to a server on EC2.
 Currently it installs system dependencies, creates a virtualenv and installs python dependencies.
+Run with: ansible-playbook playbook.yml --extra-vars "repo_tag commit_hash"
+
 
     TODO:
 
