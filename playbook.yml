@@ -42,6 +42,8 @@
         dest: /srv/app
         key_file: /home/ubuntu/.ssh/deployment
         accept_hostkey: yes
+        depth: 1
+        version: "{{ repo_tag  }}"
 
     - name: Install python requirements
       pip:
