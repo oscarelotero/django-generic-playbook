@@ -1,11 +1,20 @@
 ---
 - hosts: all
 
-
   pre_tasks:
     - name: Update apt cache if needed
       become: yes
       apt: update_cache=yes cache_valid_time=86400
+    - name: Remove old app
+      become: yes
+      file:
+        state: absent
+        path: /srv/app
+    - name: Verify that the deployment key is present
+      copy:
+        src: /home/cristian/.ssh/deployment
+        dest: /home/ubuntu/.ssh/deployment
+        mode: 0400
 
   tasks:
     - include_vars: system_requirements.yml
@@ -13,8 +22,28 @@
       become: yes
       apt: name={{ item }} state=present
       with_items: system_requirements
+
     - name: Creates virtualenv.
       command: >
         virtualenv /home/ubuntu/.envs/idk
         creates="/home/ubuntu/.envs/idk"
-    - pip: requirements="/srv/apps/idk/requirements/production.txt" virtualenv="/home/ubuntu/.envs/idk"
+
+    - name: Make sure that target directory exists
+      become: yes
+      file:
+        path: /srv/app 
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+
+    - name: Clone repository
+      git: 
+        repo: ssh://git@bitbucket.org/swappsco/idk.git
+        dest: /srv/app
+        key_file: /home/ubuntu/.ssh/deployment
+        accept_hostkey: yes
+
+    - name: Install python requirements
+      pip:
+        requirements: /srv/app/requirements/production.txt
+        virtualenv: /home/ubuntu/.envs/idk

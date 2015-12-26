@@ -6,6 +6,8 @@ system_requirements:
 #required to translate
 - gettext
 - python-dev
+- python-httplib2
+- git
 
 ##shared dependencies of:
 ##Pillow, pylibmc
@@ -27,7 +29,6 @@ system_requirements:
 
 ##hitch
 - python-setuptools
-- python3-dev
 - python-virtualenv
 - python-pip
 - firefox
