@@ -5,5 +5,6 @@
 # Variables that will be applied to all servers
 [app:vars]
 ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file=/home/ubuntu/.ssh/keyandresgz.pem
+ansible_ssh_private_key_file=/home/ubuntu/deployment-credentials/keyandresgz.pem
+
 
