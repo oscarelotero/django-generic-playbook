@@ -1,0 +1,10 @@
+server {
+    server_name 52.35.29.251;
+    listen 80;
+    access_log /var/log/nginx/idk.access.log;
+    error_log /var/log/nginx/idk.error.log;
+    location / {
+        uwsgi_pass  unix:///tmp/idk.sock;
+        include     uwsgi_params;
+    }
+}

@@ -23,6 +23,35 @@
       apt: name={{ item }} state=present
       with_items: system_requirements
 
+    - name: Copy nginx config file
+      become: yes
+      copy:
+        src: ./config_files/nginx
+        dest: /etc/nginx/sites-available/nginx
+    - name: Copy uwsgi config file
+      become: yes
+      copy:
+        src: ./config_files/uwsgi.ini
+        dest: /etc/uwsgi/apps-available/uwsgi.ini
+    - name: Create symlink for nginx
+      become: yes
+      file:
+        src: /etc/nginx/sites-available/nginx
+        dest: /etc/nginx/sites-enabled/nginx
+        state: link
+      notify: nginx reload
+    - name: Create symlink for uwsgi
+      become: yes
+      file:
+        src: /etc/uwsgi/apps-available/uwsgi.ini
+        dest: /etc/uwsgi/apps-enabled/uwsgi.ini
+        state: link
+    - name: Disable default nginx site
+      become: yes
+      file:
+        dest: /etc/nginx/sites-enabled/default
+        state: absent
+
     - name: Creates virtualenv.
       command: >
         virtualenv /home/ubuntu/.envs/idk
@@ -49,3 +78,17 @@
       pip:
         requirements: /srv/app/requirements/production.txt
         virtualenv: /home/ubuntu/.envs/idk
+
+    - name: Copy application config file
+      copyv:
+        src: ./env
+        dest: /srv/app/.env
+
+    - name: Restart uwsgi
+      become: yes
+      service: name=uwsgi state=reloaded
+
+
+  environment:
+    include: env.yml
+    

@@ -45,3 +45,8 @@ system_requirements:
 - wget
 - curl
 - llvm
+
+##server deployment
+- nginx
+- uwsgi
+- uwsgi-plugin-python
