@@ -12,7 +12,7 @@
         path: /srv/app
     - name: Verify that the deployment key is present
       copy:
-        src: ~/.ssh/deployment
+        src: /home/ubuntu/.ssh/deployment
         dest: /home/ubuntu/.ssh/deployment
         mode: 0400
 
@@ -26,12 +26,12 @@
     - name: Copy nginx config file
       become: yes
       copy:
-        src: ./config_files/nginx
+        src: /home/ubuntu/idk-ansible/config_files/nginx
         dest: /etc/nginx/sites-available/nginx
     - name: Copy uwsgi config file
       become: yes
       copy:
-        src: ./config_files/uwsgi.ini
+        src: /home/ubuntu/idk-ansible/config_files/uwsgi.ini
         dest: /etc/uwsgi/apps-available/uwsgi.ini
     - name: Create symlink for nginx
       become: yes
