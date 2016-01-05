@@ -1,6 +1,6 @@
 # Application servers
 [app]
-52.35.29.251
+52.10.124.110
 
 # Variables that will be applied to all servers
 [app:vars]
