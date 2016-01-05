@@ -12,7 +12,7 @@
         path: /srv/app
     - name: Verify that the deployment key is present
       copy:
-        src: /home/ubuntu/.ssh/deployment
+        src: /home/ubuntu/deployment-credentials/deployment
         dest: /home/ubuntu/.ssh/deployment
         mode: 0400
 
