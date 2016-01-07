@@ -47,8 +47,8 @@
 
     - name: Creates virtualenv.
       command: >
-        virtualenv /home/ubuntu/.envs/idk
-        creates="/home/ubuntu/.envs/idk"
+        virtualenv /home/ubuntu/.envs/app
+        creates="/home/ubuntu/.envs/app"
 
     - name: Make sure that target directory exists
       become: yes
@@ -64,13 +64,13 @@
         dest: /srv/app
         key_file: /home/ubuntu/.ssh/deployment
         accept_hostkey: yes
-        depth: 1
         version: "{{ repo_tag  }}"
+        force: yes
 
     - name: Install python requirements
       pip:
         requirements: /srv/app/requirements/production.txt
-        virtualenv: /home/ubuntu/.envs/idk
+        virtualenv: /home/ubuntu/.envs/app
 
     - name: Copy application config file
       copyv:
@@ -79,5 +79,5 @@
 
     - name: Restart uwsgi
       become: yes
-      service: name=uwsgi state=reloaded
+      service: name=uwsgi state=restarted
 
