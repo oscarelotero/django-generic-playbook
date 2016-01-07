@@ -60,7 +60,7 @@
 
     - name: Clone repository
       git: 
-        repo: ssh://git@github.com/swappsco/idk.git
+        repo: "{{ repo_url }}"
         dest: /srv/app
         key_file: /home/ubuntu/.ssh/deployment
         accept_hostkey: yes
@@ -74,7 +74,7 @@
 
     - name: Copy application config file
       copyv:
-        src: ./env
+        src: ./envs/{{ app_name }}
         dest: /srv/app/.env
 
     - name: Restart uwsgi
