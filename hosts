@@ -1,10 +1,8 @@
 # Application servers
 [app]
-52.10.124.110
+pozting.swapps.io
 
 # Variables that will be applied to all servers
 [app:vars]
 ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file=/home/ubuntu/deployment-credentials/keyandresgz.pem
-
-
+ansible_ssh_private_key_file=/Users/andresgz/swapps2016.pem
