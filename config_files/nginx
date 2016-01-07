@@ -8,3 +8,19 @@ server {
         include     uwsgi_params;
     }
 }
+
+server {
+    listen 443;
+    access_log /var/log/nginx/app.access.log;
+    error_log /var/log/nginx/app.error.log;
+    server_name default;
+
+    ssl on;
+    ssl_certificate /home/ubuntu/ssl/swappsio.crt;
+    ssl_certificate_key /home/ubuntu/ssl/swappsio.key;
+
+    location / {
+        uwsgi_pass  unix:///tmp/app.sock;
+        include     uwsgi_params;
+    }
+}
