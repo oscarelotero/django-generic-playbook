@@ -17,6 +17,11 @@
       become: yes
       apt: name={{ item }} state=present
       with_items: system_requirements
+    - name: Copy SSL files
+      become: yes
+      copy:
+        src: ssl
+        dest: /home/ubuntu
     - name: Copy nginx config file
       become: yes
       copy:
@@ -66,6 +71,7 @@
         accept_hostkey: yes
         version: "{{ repo_tag  }}"
         force: yes
+        update: yes
 
     - name: Install python requirements
       pip:

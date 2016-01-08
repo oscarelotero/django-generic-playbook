@@ -1,19 +1,45 @@
 [idk]
-52.10.124.110
+idk.swapps.io
 
-# Variables that will be applied to all servers
 [idk:vars]
 ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file=~/.ssh/keyandresgz.pem
+ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/idk.git
 app_name=idk
 
 [pozting]
 pozting.swapps.io
 
-# Variables that will be applied to all servers
 [pozting:vars]
 ansible_ssh_user=ubuntu
 ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/pozting.git
 app_name=pozting
+
+
+[calicasa]
+54.152.119.9
+
+[calicasa:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
+repo_url=ssh://git@github.com/swappsco/calicasa.git
+app_name=calicasa
+
+[roojet]
+54.173.37.211
+
+[roojet:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
+repo_url=ssh://git@github.com/swappsco/roojet.git
+app_name=roojet
+
+[ops]
+ops.swapps.io
+
+[ops:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
+repo_url=ssh://git@github.com/swappsco/idk.git
+app_name=ops
