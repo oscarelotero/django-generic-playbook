@@ -13,37 +13,46 @@
 
   tasks:
     - include_vars: system_requirements.yml
+
     - name: Install system packages.
       become: yes
       apt: name={{ item }} state=present
       with_items: system_requirements
+
     - name: Copy SSL files
       become: yes
       copy:
         src: ssl
         dest: /home/ubuntu
+
     - name: Copy nginx config file
       become: yes
       copy:
         src: config_files/nginx
         dest: /etc/nginx/sites-available/nginx
+
     - name: Copy uwsgi config file
       become: yes
       copy:
         src: config_files/uwsgi.ini
         dest: /etc/uwsgi/apps-available/uwsgi.ini
+
     - name: Create symlink for nginx
       become: yes
       file:
         src: /etc/nginx/sites-available/nginx
         dest: /etc/nginx/sites-enabled/nginx
         state: link
+      notify:
+      - Restart nginx
+
     - name: Create symlink for uwsgi
       become: yes
       file:
         src: /etc/uwsgi/apps-available/uwsgi.ini
         dest: /etc/uwsgi/apps-enabled/uwsgi.ini
         state: link
+
     - name: Disable default nginx site
       become: yes
       file:
@@ -72,6 +81,8 @@
         version: "{{ repo_tag  }}"
         force: yes
         update: yes
+      notify:
+      - Restart uwsgi
 
     - name: Install python requirements
       pip:
@@ -97,6 +108,7 @@
         virtualenv: /home/ubuntu/.envs/app
         settings: config.settings.production
 
+  handlers:
     - name: Restart uwsgi
       become: yes
       service: name=uwsgi state=restarted
@@ -104,3 +116,4 @@
     - name: Restart nginx
       become: yes
       service: name=nginx state=reloaded
+
