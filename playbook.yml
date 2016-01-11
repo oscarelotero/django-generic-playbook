@@ -83,17 +83,19 @@
         src: ./envs/{{ app_name }}
         dest: /srv/app/.env
 
-    - django_manage: >
-        command=migrate
-        app_path=/srv/app/
-        virtualenv=/home/ubuntu/.envs/app
-        settings=config.settings.production
+    - name: Sync DB
+      django_manage:
+        command: migrate
+        app_path: /srv/app/
+        virtualenv: /home/ubuntu/.envs/app
+        settings: config.settings.production
 
-    - django_manage: >
-        command=collectstatic
-        app_path=/srv/app/
-        virtualenv=/home/ubuntu/.envs/app
-        settings=config.settings.production
+    - name: Collect Static
+      django_manage:
+        command: collectstatic
+        app_path: /srv/app/
+        virtualenv: /home/ubuntu/.envs/app
+        settings: config.settings.production
 
     - name: Restart uwsgi
       become: yes
