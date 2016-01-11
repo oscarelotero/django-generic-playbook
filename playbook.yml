@@ -37,6 +37,12 @@
         src: config_files/uwsgi.ini
         dest: /etc/uwsgi/apps-available/uwsgi.ini
 
+    - name: Disable default nginx site
+      become: yes
+      file:
+        dest: /etc/nginx/sites-enabled/default
+        state: absent
+
     - name: Create symlink for nginx
       become: yes
       file:
@@ -52,12 +58,6 @@
         src: /etc/uwsgi/apps-available/uwsgi.ini
         dest: /etc/uwsgi/apps-enabled/uwsgi.ini
         state: link
-
-    - name: Disable default nginx site
-      become: yes
-      file:
-        dest: /etc/nginx/sites-enabled/default
-        state: absent
 
     - name: Creates virtualenv.
       command: >
