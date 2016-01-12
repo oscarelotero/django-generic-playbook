@@ -29,7 +29,7 @@
       become: yes
       copy:
         src: config_files/nginx_default
-        dest: /etc/nginx/sites-available/default
+        dest: /etc/nginx/sites-available/{{ app_name }}
 
     - name: Copy nginx config file
       become: yes
@@ -55,8 +55,8 @@
     - name: Create symlink for nginx
       become: yes
       file:
-        src: /etc/nginx/sites-available/nginx
-        dest: /etc/nginx/sites-enabled/nginx
+        src: /etc/nginx/sites-available/{{ app_name }}
+        dest: /etc/nginx/sites-enabled/{{ app_name }}
         state: link
       notify:
       - Restart nginx
