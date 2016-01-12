@@ -1,0 +1,29 @@
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server ipv6only=on;
+
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+
+    server_name default;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+
+# HTTPS server
+#
+server {
+    listen 443;
+    server_name default;
+    root html;
+    index index.html index.htm;
+    ssl on;
+    ssl_certificate /home/ubuntu/ssl/swappsio.crt;
+    ssl_certificate_key /home/ubuntu/ssl/swappsio.key;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}

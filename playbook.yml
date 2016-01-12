@@ -25,23 +25,32 @@
         src: ssl
         dest: /home/ubuntu
 
-    - name: Copy nginx config file
+    - name: Copy Default nginx config file
       become: yes
       copy:
+        src: config_files/nginx_default
+        dest: /etc/nginx/sites-available/default
+
+    - name: Copy nginx config file
+      become: yes
+      template:
         src: config_files/nginx
         dest: /etc/nginx/sites-available/nginx
 
     - name: Copy uwsgi config file
       become: yes
-      copy:
+      template:
         src: config_files/uwsgi.ini
-        dest: /etc/uwsgi/apps-available/uwsgi.ini
+        dest: /etc/uwsgi/apps-available/{{ app_name }}.ini
 
-    - name: Disable default nginx site
+    - name: Create symlink for nginx default
       become: yes
       file:
+        src: /etc/nginx/sites-available/default
         dest: /etc/nginx/sites-enabled/default
-        state: absent
+        state: link
+      notify:
+      - Restart nginx
 
     - name: Create symlink for nginx
       become: yes
@@ -55,19 +64,19 @@
     - name: Create symlink for uwsgi
       become: yes
       file:
-        src: /etc/uwsgi/apps-available/uwsgi.ini
-        dest: /etc/uwsgi/apps-enabled/uwsgi.ini
+        src: /etc/uwsgi/apps-available/{{ app_name }}.ini
+        dest: /etc/uwsgi/apps-enabled/{{ app_name }}.ini
         state: link
 
     - name: Creates virtualenv.
       command: >
-        virtualenv /home/ubuntu/.envs/app
-        creates="/home/ubuntu/.envs/app"
+        virtualenv /home/ubuntu/.envs/{{ app_name }}
+        creates="/home/ubuntu/.envs/{{ app_name }}"
 
     - name: Make sure that target directory exists
       become: yes
       file:
-        path: /srv/app 
+        path: /srv/apps/{{ app_name }} 
         state: directory
         owner: ubuntu
         group: ubuntu
@@ -75,42 +84,47 @@
     - name: Clone repository
       git: 
         repo: "{{ repo_url }}"
-        dest: /srv/app
+        dest: /srv/apps/{{ app_name }}
         key_file: /home/ubuntu/.ssh/deployment
         accept_hostkey: yes
         version: "{{ repo_tag  }}"
         force: yes
         update: yes
       notify:
+      - Install python requirements
+      - Sync DB
+      - Collect Static
       - Restart uwsgi
 
-    - name: Install python requirements
-      pip:
-        requirements: /srv/app/requirements/production.txt
-        virtualenv: /home/ubuntu/.envs/app
 
     - name: Copy application config file
       copyv:
         src: ./envs/{{ app_name }}
-        dest: /srv/app/.env
+        dest: /srv/apps/{{ app_name }}/.env
       notify:
       - Restart uwsgi
+
+
+  handlers:
+    - name: Install python requirements
+      pip:
+        requirements: /srv/apps/{{ app_name }}/requirements/production.txt
+        virtualenv: /home/ubuntu/.envs/{{ app_name }}
 
     - name: Sync DB
       django_manage:
         command: migrate
-        app_path: /srv/app/
-        virtualenv: /home/ubuntu/.envs/app
+        app_path: /srv/apps/{{ app_name }}/
+        virtualenv: /home/ubuntu/.envs/{{ app_name }}
         settings: config.settings.production
 
     - name: Collect Static
       django_manage:
         command: collectstatic
-        app_path: /srv/app/
-        virtualenv: /home/ubuntu/.envs/app
+        app_path: /srv/apps/{{ app_name }}/
+        virtualenv: /home/ubuntu/.envs/{{ app_name }}
         settings: config.settings.production
 
-  handlers:
     - name: Restart uwsgi
       become: yes
       service: name=uwsgi state=restarted

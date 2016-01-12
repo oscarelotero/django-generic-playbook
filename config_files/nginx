@@ -1,26 +1,26 @@
 server {
-    server_name default;
+    server_name {{ server_name }};
     listen 80;
-    access_log /var/log/nginx/app.access.log;
-    error_log /var/log/nginx/app.error.log;
+    access_log /var/log/nginx/{{ app_name }}.access.log;
+    error_log /var/log/nginx/{{ app_name }}.error.log;
     location / {
-        uwsgi_pass  unix:///tmp/app.sock;
+        uwsgi_pass  unix:///tmp/{{ app_name }}.sock;
         include     uwsgi_params;
     }
 }
 
 server {
     listen 443;
-    access_log /var/log/nginx/app.access.log;
-    error_log /var/log/nginx/app.error.log;
-    server_name default;
+    access_log /var/log/nginx/{{ app_name }}.access.log;
+    error_log /var/log/nginx/{{ app_name }}.error.log;
+    server_name {{ server_name }};
 
     ssl on;
     ssl_certificate /home/ubuntu/ssl/swappsio.crt;
     ssl_certificate_key /home/ubuntu/ssl/swappsio.key;
 
     location / {
-        uwsgi_pass  unix:///tmp/app.sock;
+        uwsgi_pass  unix:///tmp/{{ app_name }}.sock;
         include     uwsgi_params;
     }
 }

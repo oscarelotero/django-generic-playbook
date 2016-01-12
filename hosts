@@ -6,6 +6,7 @@ ansible_ssh_user=ubuntu
 ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/idk.git
 app_name=idk
+server_name=reports.swapps.io
 
 [pozting]
 pozting.swapps.io
@@ -15,7 +16,7 @@ ansible_ssh_user=ubuntu
 ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/pozting.git
 app_name=pozting
-
+server_name=pozting.swapps.io
 
 [calicasa]
 54.152.119.9
@@ -25,15 +26,18 @@ ansible_ssh_user=ubuntu
 ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/calicasa.git
 app_name=calicasa
+server_name=calicasa.swapps.io
+
 
 [roojet]
-54.173.37.211
+roojet.swapps.io
 
 [roojet:vars]
 ansible_ssh_user=ubuntu
 ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/roojet.git
 app_name=roojet
+server_name='roojet.swapps.io app.roojet.com'
 
 [ops]
 ops.swapps.io
@@ -43,3 +47,4 @@ ansible_ssh_user=ubuntu
 ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/dors.git
 app_name=ops
+server_name=ops.swapps.io
