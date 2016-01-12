@@ -29,13 +29,13 @@
       become: yes
       copy:
         src: config_files/nginx_default
-        dest: /etc/nginx/sites-available/{{ app_name }}
+        dest: /etc/nginx/sites-available/default
 
     - name: Copy nginx config file
       become: yes
       template:
         src: config_files/nginx
-        dest: /etc/nginx/sites-available/nginx
+        dest: /etc/nginx/sites-available/{{ app_name }}
 
     - name: Copy uwsgi config file
       become: yes
