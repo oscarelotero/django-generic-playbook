@@ -93,6 +93,8 @@
       copyv:
         src: ./envs/{{ app_name }}
         dest: /srv/app/.env
+      notify:
+      - Restart uwsgi
 
     - name: Sync DB
       django_manage:
