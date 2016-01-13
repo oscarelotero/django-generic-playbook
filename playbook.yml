@@ -22,8 +22,8 @@
     - name: Copy SSL files
       become: yes
       copy:
-        src: ssl
-        dest: /home/ubuntu
+        src: ssl/
+        dest: /etc/nginx/cert/
 
     - name: Copy Default nginx config file
       become: yes

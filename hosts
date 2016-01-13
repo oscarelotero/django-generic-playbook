@@ -9,7 +9,7 @@ app_name=swapps
 server_name='swapps.swapps.io'
 
 [idk]
-idk.swapps.io
+52.71.96.233
 
 [idk:vars]
 ansible_ssh_user=ubuntu
@@ -29,7 +29,7 @@ app_name=pozting
 server_name=pozting.swapps.io
 
 [calicasa]
-calicasa.swapps.io
+52.91.62.82
 
 [calicasa:vars]
 ansible_ssh_user=ubuntu
@@ -58,3 +58,13 @@ ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/dors.git
 app_name=ops
 server_name=ops.swapps.io
+
+[djangocali]
+djangocali.swapps.io
+
+[djangocali:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
+repo_url=ssh://git@github.com/djangocali/portal.git
+app_name=djangocali
+server_name='djangocali.swapps.io djangocali.com www.djangocali.com'
