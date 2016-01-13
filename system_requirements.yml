@@ -50,3 +50,8 @@ system_requirements:
 - nginx
 - uwsgi
 - uwsgi-plugin-python
+
+# LXML
+- libxslt1-dev
+# POSTGIS
+- libgeos-dev

@@ -16,8 +16,8 @@ server {
     server_name {{ server_name }};
 
     ssl on;
-    ssl_certificate /home/ubuntu/ssl/swappsio.crt;
-    ssl_certificate_key /home/ubuntu/ssl/swappsio.key;
+    ssl_certificate /etc/nginx/cert/swappsio.crt;
+    ssl_certificate_key /etc/nginx/cert/swappsio.key;
 
     location / {
         uwsgi_pass  unix:///tmp/{{ app_name }}.sock;

@@ -20,8 +20,8 @@ server {
     root html;
     index index.html index.htm;
     ssl on;
-    ssl_certificate /home/ubuntu/ssl/swappsio.crt;
-    ssl_certificate_key /home/ubuntu/ssl/swappsio.key;
+    ssl_certificate /etc/nginx/cert/swappsio.crt;
+    ssl_certificate_key /etc/nginx/cert/swappsio.key;
 
     location / {
         try_files $uri $uri/ =404;
