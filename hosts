@@ -48,3 +48,13 @@ ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/dors.git
 app_name=ops
 server_name=ops.swapps.io
+
+[kabu]
+kabu.swapps.io
+
+[kabu:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/swapps-key.pem
+repo_url=ssh://git@bitbucket.org/swappsco/dors.git
+app_name=kabu
+server_name=kabu.swapps.io
