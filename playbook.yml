@@ -98,7 +98,7 @@
 
 
     - name: Copy application config file
-      copyv:
+      copy:
         src: ./envs/{{ app_name }}
         dest: /srv/apps/{{ app_name }}/.env
       notify:
