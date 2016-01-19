@@ -46,7 +46,17 @@ ansible_ssh_user=ubuntu
 ansible_ssh_private_key_file=~/.ssh/swapps-inqbation.pem
 repo_url=ssh://git@bitbucket.com/swappsco/508q.git
 app_name=508q
-server_name='508q.com'
+server_name='508q.com www.508q.com'
+
+[508q-staging]
+swapps.io
+
+[508q-staging:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
+repo_url=ssh://git@bitbucket.com/swappsco/508q.git
+app_name=q508
+server_name='508q.swapps.io'
 
 [roojet]
 roojet.swapps.io
