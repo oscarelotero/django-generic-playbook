@@ -22,7 +22,7 @@
     - name: Copy SSL files
       become: yes
       copy:
-        src: ./ssl/
+        src: ~/Dropbox/ops/ssl/
         dest: /etc/nginx/cert/
 
     - name: Copy Default nginx config file
