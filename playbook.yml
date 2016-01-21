@@ -22,7 +22,7 @@
     - name: Copy SSL files
       become: yes
       copy:
-        src: ssl/
+        src: ~/Dropbox/ops/ssl/
         dest: /etc/nginx/cert/
 
     - name: Copy Default nginx config file
@@ -99,7 +99,7 @@
 
     - name: Copy application config file
       copy:
-        src: ./envs/{{ app_name }}
+        src: ~/Dropbox/ops/envs/{{ app_name }}
         dest: /srv/apps/{{ app_name }}/.env
       notify:
       - Restart uwsgi

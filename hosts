@@ -3,7 +3,7 @@ swapps.swapps.io
 
 [swapps:vars]
 ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
+ansible_ssh_private_key_file=~/Dropbox/ops/keys/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/swapps-v2.0.git
 app_name=swapps
 server_name='swapps.swapps.io'
@@ -13,7 +13,7 @@ server_name='swapps.swapps.io'
 
 [idk:vars]
 ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
+ansible_ssh_private_key_file=~/Dropbox/ops/keys/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/idk.git
 app_name=idk
 server_name='reports.swapps.io idk.swapps.io'
@@ -23,7 +23,7 @@ pozting.swapps.io
 
 [pozting:vars]
 ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
+ansible_ssh_private_key_file=~/Dropbox/ops/keys/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/pozting.git
 app_name=pozting
 server_name=pozting.swapps.io
@@ -33,7 +33,7 @@ server_name=pozting.swapps.io
 
 [calicasa:vars]
 ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
+ansible_ssh_private_key_file=~/Dropbox/ops/keys/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/calicasa.git
 app_name=calicasa
 server_name=calicasa.swapps.io
@@ -43,7 +43,7 @@ server_name=calicasa.swapps.io
 
 [508q:vars]
 ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file=~/.ssh/swapps-inqbation.pem
+ansible_ssh_private_key_file=~/Dropbox/ops/keys/swapps-inqbation.pem
 repo_url=ssh://git@bitbucket.com/swappsco/508q.git
 app_name=508q
 server_name='508q.com www.508q.com'
@@ -53,7 +53,7 @@ swapps.io
 
 [508q-staging:vars]
 ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
+ansible_ssh_private_key_file=~/Dropbox/ops/keys/swapps2016.pem
 repo_url=ssh://git@bitbucket.com/swappsco/508q.git
 app_name=q508
 server_name='508q.swapps.io'
@@ -63,7 +63,7 @@ roojet.swapps.io
 
 [roojet:vars]
 ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
+ansible_ssh_private_key_file=~/Dropbox/ops/keys/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/roojet.git
 app_name=roojet
 server_name='roojet.swapps.io app.roojet.com'
@@ -73,7 +73,7 @@ ops.swapps.io
 
 [ops:vars]
 ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
+ansible_ssh_private_key_file=~/Dropbox/ops/keys/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/dors.git
 app_name=ops
 server_name=ops.swapps.io
@@ -83,7 +83,7 @@ kabu.swapps.io
 
 [kabu:vars]
 ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file=~/.ssh/swapps-key.pem
+ansible_ssh_private_key_file=~/Dropbox/ops/keys/swapps-key.pem
 repo_url=ssh://git@bitbucket.org/swappsco/kabu.git
 app_name=kabu
 server_name=kabu.swapps.io
@@ -93,7 +93,7 @@ djangocali.swapps.io
 
 [djangocali:vars]
 ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
+ansible_ssh_private_key_file=~/Dropbox/ops/keys/swapps2016.pem
 repo_url=ssh://git@github.com/djangocali/portal.git
 app_name=djangocali
 server_name='djangocali.swapps.io djangocali.com www.djangocali.com'
@@ -104,7 +104,7 @@ expediente.swapps.io
 
 [expediente:vars]
 ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
+ansible_ssh_private_key_file=~/Dropbox/ops/keys/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/expedientes.git
 app_name=expediente
 server_name=expediente.swapps.io
