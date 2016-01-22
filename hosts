@@ -16,7 +16,7 @@ ansible_ssh_user=ubuntu
 ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/idk.git
 app_name=idk
-server_name='reports.swapps.io idk.swapps.io'
+server_name='reports.swapps.io idk.swapps.io swapps.io www.swapps.io'
 
 [pozting]
 pozting.swapps.io
