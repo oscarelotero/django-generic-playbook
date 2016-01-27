@@ -108,3 +108,14 @@ ansible_ssh_private_key_file=~/.ssh/swapps2016.pem
 repo_url=ssh://git@github.com/swappsco/expedientes.git
 app_name=expediente
 server_name=expediente.swapps.io
+
+
+[cloudburst]
+52.10.47.174
+
+[cloudburst:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/swapps-key.pem
+repo_url=ssh://git@bitbucket.org/swappsco/cloudburst-dashboard.git
+app_name=cloudburst
+server_name=52.10.47.174
