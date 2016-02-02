@@ -1,3 +1,18 @@
+{% if redirect_urls is defined %}
+server {
+    listen 443;    
+    server_name {{redirect_urls}};
+    rewrite  ^/(.*)$  https://{{ server_name }}/$1 redirect;
+
+}
+server {
+    listen 80;    
+    server_name {{redirect_urls}};
+    rewrite  ^/(.*)$  http://{{ server_name }}/$1 redirect;
+
+}
+{% endif %}
+
 server {
     server_name {{ server_name }};
     listen 80;
