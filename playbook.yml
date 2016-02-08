@@ -101,10 +101,19 @@
       - Restart uwsgi
 
 
-    - name: Copy application config file
+    - name: Copy application config file with env_name
+      copy:
+        src: ~/Dropbox/ops/envs/{{ env_name }}
+        dest: /srv/apps/{{ app_name }}/.env
+      when: env_name is defined
+      notify:
+      - Restart uwsgi
+
+    - name: Copy application config file witt app_name
       copy:
         src: ~/Dropbox/ops/envs/{{ app_name }}
         dest: /srv/apps/{{ app_name }}/.env
+      when: env_name is undefined
       notify:
       - Restart uwsgi
 
