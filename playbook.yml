@@ -8,7 +8,7 @@
     - name: Verify that the deployment key is present
       copy:
         src: ~/.ssh/deployment
-        dest: /home/ubuntu/.ssh/deployment
+        dest: ~/.ssh/deployment
         mode: 0400
 
   tasks:
@@ -74,8 +74,8 @@
 
     - name: Creates virtualenv.
       command: >
-        virtualenv /home/ubuntu/.envs/{{ app_name }}
-        creates="/home/ubuntu/.envs/{{ app_name }}"
+        virtualenv ~/.envs/{{ app_name }}
+        creates="~/.envs/{{ app_name }}"
 
     - name: Make sure that target directory exists
       become: yes
@@ -89,7 +89,7 @@
       git: 
         repo: "{{ repo_url }}"
         dest: /srv/apps/{{ app_name }}
-        key_file: /home/ubuntu/.ssh/deployment
+        key_file: ~/.ssh/deployment
         accept_hostkey: yes
         version: "{{ repo_tag  }}"
         force: yes
@@ -122,20 +122,20 @@
     - name: Install python requirements
       pip:
         requirements: /srv/apps/{{ app_name }}/requirements/production.txt
-        virtualenv: /home/ubuntu/.envs/{{ app_name }}
+        virtualenv: ~/.envs/{{ app_name }}
 
     - name: Sync DB
       django_manage:
         command: migrate
         app_path: /srv/apps/{{ app_name }}/
-        virtualenv: /home/ubuntu/.envs/{{ app_name }}
+        virtualenv: ~/.envs/{{ app_name }}
         settings: config.settings.production
 
     - name: Collect Static
       django_manage:
         command: collectstatic
         app_path: /srv/apps/{{ app_name }}/
-        virtualenv: /home/ubuntu/.envs/{{ app_name }}
+        virtualenv: ~/.envs/{{ app_name }}
         settings: config.settings.production
 
     - name: Restart uwsgi
