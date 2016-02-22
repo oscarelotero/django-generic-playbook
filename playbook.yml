@@ -36,16 +36,16 @@
       template:
         src: config_files/nginx
         dest: /etc/nginx/sites-available/{{ app_name }}
-      when: nginx is undefined
+      when: nginx_conf is undefined
       notify:
       - Restart nginx
 
     - name: Copy specific nginx config file
       become: yes
       template:
-        src: "{{ nginx }}"
+        src: "{{ nginx_conf }}"
         dest: /etc/nginx/sites-available/{{ app_name }}
-      when: nginx is defined
+      when: nginx_conf is defined
       notify:
       - Restart nginx
 
