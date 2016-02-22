@@ -43,7 +43,7 @@
     - name: Copy specific nginx config file
       become: yes
       template:
-        src: {{ nginx }}
+        src: "{{ nginx }}"
         dest: /etc/nginx/sites-available/{{ app_name }}
       when: nginx is defined
       notify:
