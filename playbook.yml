@@ -158,4 +158,4 @@
 
     - name: Deploy scraper
       shell: scrapyd-deploy qscraper
-      when: app_name == "qscraper_prod"
+      when: app_name == "qscraper_prod" or app_name == "qscraper_dev"
