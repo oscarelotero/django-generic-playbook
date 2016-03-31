@@ -25,6 +25,7 @@ server {
 }
 
 server {
+    client_max_body_size 4m;
     listen 443;
     access_log /var/log/nginx/{{ app_name }}.access.log;
     error_log /var/log/nginx/{{ app_name }}.error.log;
