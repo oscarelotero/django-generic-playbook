@@ -1,3 +1,13 @@
+[jltest]
+54.172.19.10
+
+[jltest:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=~/Downloads/swkey.pem
+repo_url=ssh://git@github.com/swappsco/swapps-v2.0.git
+app_name=swapps
+server_name='jltest.swapps.io'
+
 [swapps]
 swapps.swapps.io
 

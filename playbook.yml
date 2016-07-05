@@ -11,14 +11,10 @@
         dest: ~/.ssh/deployment
         mode: 0400
 
+  roles:
+    - requirements
+
   tasks:
-    - include_vars: system_requirements.yml
-
-    - name: Install system packages.
-      become: yes
-      apt: name={{ item }} state=present
-      with_items: system_requirements
-
     - name: Copy SSL files
       become: yes
       copy:
