@@ -1,5 +1,5 @@
 [jltest]
-54.86.186.91
+54.224.128.130
 
 [jltest:vars]
 ansible_ssh_user=ubuntu
