@@ -13,70 +13,9 @@
 
   roles:
     - requirements
+    - nginx
 
   tasks:
-    - name: Copy SSL files
-      become: yes
-      copy:
-        src: ~/Dropbox/ops/ssl/
-        dest: /etc/nginx/cert/
-
-    - name: Copy Default nginx config file
-      become: yes
-      copy:
-        src: config_files/nginx_default
-        dest: /etc/nginx/sites-available/default
-
-    - name: Copy nginx config file
-      become: yes
-      template:
-        src: config_files/nginx
-        dest: /etc/nginx/sites-available/{{ app_name }}
-      when: nginx_conf is undefined
-      notify:
-      - Restart nginx
-
-    - name: Copy specific nginx config file
-      become: yes
-      template:
-        src: "{{ nginx_conf }}"
-        dest: /etc/nginx/sites-available/{{ app_name }}
-      when: nginx_conf is defined
-      notify:
-      - Restart nginx
-
-    - name: Copy uwsgi config file
-      become: yes
-      template:
-        src: config_files/uwsgi.ini
-        dest: /etc/uwsgi/apps-available/{{ app_name }}.ini
-      notify:
-      - Restart nginx
-
-    - name: Create symlink for nginx default
-      become: yes
-      file:
-        src: /etc/nginx/sites-available/default
-        dest: /etc/nginx/sites-enabled/default
-        state: link
-      notify:
-      - Restart uwsgi
-
-    - name: Create symlink for nginx
-      become: yes
-      file:
-        src: /etc/nginx/sites-available/{{ app_name }}
-        dest: /etc/nginx/sites-enabled/{{ app_name }}
-        state: link
-      notify:
-      - Restart nginx
-
-    - name: Create symlink for uwsgi
-      become: yes
-      file:
-        src: /etc/uwsgi/apps-available/{{ app_name }}.ini
-        dest: /etc/uwsgi/apps-enabled/{{ app_name }}.ini
-        state: link
 
     - name: Creates virtualenv.
       command: >
