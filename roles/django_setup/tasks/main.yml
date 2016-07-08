@@ -61,6 +61,9 @@
   pip:
     requirements: /srv/apps/{{ app_name }}/requirements/production.txt
     virtualenv: ~/.envs/{{ app_name }}
+  notify:
+  - Collect Static
+  - Restart uwsgi
 
 - name: Sync DB
   django_manage:
@@ -69,6 +72,9 @@
     virtualenv: ~/.envs/{{ app_name }}
     settings: config.settings.production
   when: schemas is undefined
+  notify:
+  - Collect Static
+  - Restart uwsgi
 
 - name: Sync DB schemas
   django_manage:
@@ -77,3 +83,6 @@
     virtualenv: ~/.envs/{{ app_name }}
     settings: config.settings.production
   when: schemas is defined and schemas
+  notify:
+  - Collect Static
+  - Restart uwsgi

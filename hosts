@@ -32,6 +32,17 @@ server_name='decisions.swapps.io'
 
 #---------------------------------
 
+[swappsco_prod]
+server.swapps.co
+
+[swappsco_prod:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=~/Downloads/swkey.pem
+repo_url=ssh://git@github.com/swappsco/swapps-v2.0.git
+app_name=swapps
+server_name='www.swapps.co'
+redirect_urls='swapps.co swapps.swapps.io'
+
 [swapps]
 swapps.swapps.io
 
