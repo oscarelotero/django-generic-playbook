@@ -23,7 +23,6 @@
     update: yes
   notify:
   - Install python requirements
-  - Sync DB
   - Collect Static
   - Restart uwsgi
 
@@ -56,6 +55,21 @@
 
   notify:
   - Install python requirements
-  - Sync DB
   - Collect Static
   - Restart uwsgi
+
+- name: Sync DB
+  django_manage:
+    command: migrate
+    app_path: /srv/apps/{{ app_name }}/
+    virtualenv: ~/.envs/{{ app_name }}
+    settings: config.settings.production
+  when: schemas is undefined
+
+- name: Sync DB schemas
+  django_manage:
+    command: migrate_schemas
+    app_path: /srv/apps/{{ app_name }}/
+    virtualenv: ~/.envs/{{ app_name }}
+    settings: config.settings.production
+  when: schemas is defined and schemas

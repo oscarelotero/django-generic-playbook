@@ -5,13 +5,6 @@
     requirements: /srv/apps/{{ app_name }}/requirements/production.txt
     virtualenv: ~/.envs/{{ app_name }}
 
-- name: Sync DB
-  django_manage:
-    command: migrate
-    app_path: /srv/apps/{{ app_name }}/
-    virtualenv: ~/.envs/{{ app_name }}
-    settings: config.settings.production
-
 - name: Collect Static
   django_manage:
     command: collectstatic
