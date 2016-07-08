@@ -1,0 +1,8 @@
+---
+
+- name: download get-pip file
+  get_url: url=https://bootstrap.pypa.io/get-pip.py dest=~/get-pip.py
+
+- name: install get-pip
+  become: yes
+  command: python get-pip.py

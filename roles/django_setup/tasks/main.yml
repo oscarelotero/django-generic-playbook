@@ -1,0 +1,75 @@
+---
+- name: Creates virtualenv.
+  command: >
+    virtualenv ~/.envs/{{ app_name }}
+    creates="~/.envs/{{ app_name }}"
+
+- name: Make sure that target directory exists
+  become: yes
+  file:
+    path: /srv/apps/{{ app_name }} 
+    state: directory
+    owner: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_ssh_user }}"
+
+- name: Clone repository
+  git: 
+    repo: "{{ repo_url }}"
+    dest: /srv/apps/{{ app_name }}
+    key_file: ~/.ssh/deployment
+    accept_hostkey: yes
+    version: "{{ repo_tag  }}"
+    force: yes
+    update: yes
+  notify:
+  - Install python requirements
+  - Collect Static
+  - Restart uwsgi
+
+- name: Copy application config file with env_name
+  copy:
+    src: ~/Dropbox/ops/envs/{{ env_name }}
+    dest: /srv/apps/{{ app_name }}/.env
+  when: env_name is defined
+  tags:
+    - update_env
+  notify:
+  - Restart uwsgi
+
+- name: Copy application config file witt app_name
+  copy:
+    src: ~/Dropbox/ops/envs/{{ app_name }}
+    dest: /srv/apps/{{ app_name }}/.env
+  when: env_name is undefined
+  tags:
+    - update_env
+  notify:
+  - Restart uwsgi
+
+- name: Custom Force
+  # to review later, not the best practice
+  ping:
+  when: custom_force_var is defined and custom_force_var
+  tags:
+    - custom_force
+
+  notify:
+  - Install python requirements
+  - Collect Static
+  - Restart uwsgi
+
+- name: Sync DB
+  django_manage:
+    command: migrate
+    app_path: /srv/apps/{{ app_name }}/
+    virtualenv: ~/.envs/{{ app_name }}
+    settings: config.settings.production
+  when: schemas is undefined
+
+- name: Sync DB schemas
+  django_manage:
+    command: migrate_schemas
+    app_path: /srv/apps/{{ app_name }}/
+    virtualenv: ~/.envs/{{ app_name }}
+    settings: config.settings.production
+  when: schemas is defined and schemas

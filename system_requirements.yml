@@ -30,7 +30,6 @@ system_requirements:
 ##hitch
 - python-setuptools
 - python-virtualenv
-- python-pip
 - firefox
 - automake
 - libtool
