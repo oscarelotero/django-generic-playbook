@@ -1,10 +1,5 @@
 ---
 
-- name: Install python requirements
-  pip:
-    requirements: /srv/apps/{{ app_name }}/requirements/production.txt
-    virtualenv: ~/.envs/{{ app_name }}
-
 - name: Collect Static
   django_manage:
     command: collectstatic
