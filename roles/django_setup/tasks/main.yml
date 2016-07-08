@@ -54,9 +54,13 @@
     - custom_force
 
   notify:
-  - Install python requirements
   - Collect Static
   - Restart uwsgi
+
+- name: Install python requirements
+  pip:
+    requirements: /srv/apps/{{ app_name }}/requirements/production.txt
+    virtualenv: ~/.envs/{{ app_name }}
 
 - name: Sync DB
   django_manage:
