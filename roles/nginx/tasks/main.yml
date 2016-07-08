@@ -43,8 +43,6 @@
     src: /etc/nginx/sites-available/default
     dest: /etc/nginx/sites-enabled/default
     state: link
-  notify:
-  - Restart uwsgi
 
 - name: Create symlink for nginx
   become: yes
