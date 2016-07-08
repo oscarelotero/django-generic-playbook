@@ -1,5 +1,5 @@
 [jltest]
-54.224.128.130
+54.172.124.217
 
 [jltest:vars]
 ansible_ssh_user=ubuntu
@@ -7,6 +7,16 @@ ansible_ssh_private_key_file=~/Downloads/swkey.pem
 repo_url=ssh://git@github.com/swappsco/swapps-v2.0.git
 app_name=swapps
 server_name='jltest.swapps.io'
+
+[qscraper_hub]
+52.205.219.43
+
+[qscraper_hub:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=~/Downloads/swkey.pem
+repo_url=git@github.com:inqbation/qscraper.git
+app_name=qscraper_hub
+server_name='qscraper.7dhub.com'
 
 [swapps]
 swapps.swapps.io

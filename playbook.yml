@@ -12,6 +12,7 @@
         mode: 0400
 
   roles:
+    - install_pip
     - requirements
     - nginx
     - django_setup
