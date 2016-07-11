@@ -22,7 +22,6 @@
     force: yes
     update: yes
   notify:
-  - Install python requirements
   - Collect Static
   - Restart uwsgi
 
