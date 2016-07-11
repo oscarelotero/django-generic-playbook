@@ -1,0 +1,6 @@
+---
+- include_vars: system_requirements.yml
+- name: Install system packages.
+  become: yes
+  apt: name={{ item }} state=present
+  with_items: system_requirements
