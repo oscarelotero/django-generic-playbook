@@ -77,7 +77,7 @@
 
 - name: Sync DB schemas
   django_manage:
-    command: migrate_schemas
+    command: migrate_schemas --shared
     app_path: /srv/apps/{{ app_name }}/
     virtualenv: ~/.envs/{{ app_name }}
     settings: config.settings.production
