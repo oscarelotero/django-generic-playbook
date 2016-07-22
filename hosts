@@ -164,3 +164,18 @@ ansible_ssh_private_key_file=~/.ssh/swapps-key.pem
 repo_url=ssh://git@bitbucket.org/swappsco/cloudburst-dashboard.git
 app_name=cloudburst
 server_name=52.10.47.174
+
+
+#-----------------------------
+# qscraper_hub from inqbation
+#-----------------------------
+
+[qscraper_hub]
+52.205.219.43
+
+[qscraper_hub:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=~/Documents/jose/7dhubkey.pem
+repo_url=git@github.com:inqbation/qscraper.git
+app_name=qscraper_hub
+server_name='qscraper.7dhub.com'
