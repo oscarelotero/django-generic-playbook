@@ -3,10 +3,7 @@
 - hosts: all
 
   roles:
-  #- Stouts.python
-  - build-essential
-
-  roles:
+    - build-essential
     - install_pip
     - requirements
     - nginx
