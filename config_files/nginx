@@ -2,13 +2,13 @@
 server {
     listen 443;    
     server_name {{redirect_urls}};
-    rewrite  ^/(.*)$  https://{{ server_name }}/$1 redirect;
+    rewrite  ^/(.*)$  https://{{ server_name }}/$1 {% if redirect_type is defined %}{{ redirect_type }}{% else %}redirect{% endif %};
 
 }
 server {
     listen 80;    
     server_name {{redirect_urls}};
-    rewrite  ^/(.*)$  http://{{ server_name }}/$1 redirect;
+    rewrite  ^/(.*)$  http://{{ server_name }}/$1 {% if redirect_type is defined %}{{ redirect_type }}{% else %}redirect{% endif %};
 
 }
 {% endif %}
