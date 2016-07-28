@@ -32,9 +32,8 @@ server {
     server_name {{ server_name }};
 
     ssl on;
-    ssl_certificate /etc/nginx/cert/swappsio.crt;
-    ssl_certificate_key /etc/nginx/cert/swappsio.key;
-
+    ssl_certificate {% if ssl_certificate %}/etc/nginx/cert/{{ssl_certificate}}.crt{% else %}/etc/nginx/cert/swappsio.crt{% endif %};
+    ssl_certificate_key {% if ssl_certificate %}/etc/nginx/cert/{{ssl_certificate}}.key{% else %}/etc/nginx/cert/swappsio.key{% endif %};
     location / {
         uwsgi_pass  unix:///tmp/{{ app_name }}.sock;
         include     uwsgi_params;
