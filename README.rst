@@ -2,6 +2,8 @@
 Django Generic Playbook for Ansible
 ===================================
 
+Version: 0.1.7
+
 This is a basic setup for deployment to a server on EC2. Currently it
 installs system dependencies, creates a virtualenv and installs python
 dependencies. 
