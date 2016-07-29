@@ -44,4 +44,4 @@ Run in the console
 
 ::
 
-    ansible-playbook playbook.yml –extra-vars “repo\_tag commit\_hash”
+    ansible-playbook playbook.yml –extra-vars “repo_tag commit_hash”
