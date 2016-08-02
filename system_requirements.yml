@@ -27,6 +27,7 @@ system_requirements:
 - graphviz-dev
 
 ##hitch
+- libpython-all-dev
 - python-setuptools
 - python-virtualenv
 - firefox
